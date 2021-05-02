@@ -6,13 +6,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Application {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         SpringApplication.run(Application.class, args);
 
         TaskRunner taskRunner = new TaskRunner();
         GreetingWebClient gwc = new GreetingWebClient();
-        for (int i = 0; i < 100; i++) {
-            taskRunner.schedule(() -> System.out.println(gwc.getResult()));
+        for (int i = 0; i < 100000; i++) {
+            taskRunner.schedule(gwc::getResult);
         }
     }
 }

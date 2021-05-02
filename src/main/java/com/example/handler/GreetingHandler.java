@@ -10,6 +10,8 @@ import reactor.core.publisher.Mono;
 @Component
 public class GreetingHandler {
     public Mono<ServerResponse> hello(ServerRequest request) {
+        for (int i = 0; i < 100000; i++) {
+        }
         return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
                 .body(BodyInserters.fromValue("Hello, Spring!"));
     }

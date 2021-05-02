@@ -27,12 +27,21 @@ public class GreetingWebClient {
                 .build();
     }
 
-    public String getResult() {
+    public void getResult() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println(getRes());
+        }
+    }
+
+    public String getRes() {
         Mono<ResponseEntity<String>> result = webClient.get()
                 .uri("/hello")
                 .accept(MediaType.TEXT_PLAIN)
                 .retrieve()
                 .toEntity(String.class);
-        return ">> result = " + result.map(HttpEntity::getBody).block();
+        return ">> result = " + result.map(HttpEntity::getBody).map(a -> {
+            System.out.println("Result ********* " + a);
+            return a;
+        }).block();
     }
 }
