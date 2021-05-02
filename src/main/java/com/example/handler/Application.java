@@ -9,10 +9,10 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
 
+        TaskRunner taskRunner = new TaskRunner();
         GreetingWebClient gwc = new GreetingWebClient();
-        System.out.println(gwc.getResult());
-        System.out.println(gwc.getResult());
-        System.out.println(gwc.getResult());
-        System.out.println(gwc.getResult());
+        for (int i = 0; i < 100; i++) {
+            taskRunner.schedule(() -> System.out.println(gwc.getResult()));
+        }
     }
 }
