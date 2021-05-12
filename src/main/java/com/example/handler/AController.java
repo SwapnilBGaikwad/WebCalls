@@ -16,9 +16,7 @@ public class AController {
     public Mono<ResponseEntity<String>> hello() {
         return greetingHandler.hello()
                 .map(s -> ResponseEntity.status(HttpStatus.CREATED).body("successful"))
-                .doOnSuccess(s -> {
-                    System.out.println("s " + s);
-                });
+                .doOnSuccess(s -> System.out.println("hello call " + s));
     }
 
 
@@ -26,9 +24,7 @@ public class AController {
     public Mono<ResponseEntity<String>> test() {
         return greetingHandler.testServer()
                 .map(s -> ResponseEntity.status(HttpStatus.CREATED).body("successful"))
-                .doOnSuccess(s -> {
-                    System.out.println("s " + s);
-                });
+                .doOnSuccess(s -> System.out.println("test call " + s));
     }
 
 }

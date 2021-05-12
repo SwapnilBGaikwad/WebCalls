@@ -14,17 +14,16 @@ public class GreetingHandler {
     private GreetingWebClient gwc = new GreetingWebClient();
 
     public Mono<ServerResponse> hello() {
-//        for (int i = 0; i < 100000; i++) {
-//        }
         return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
                 .body(BodyInserters.fromValue("Hello, Spring!"));
     }
 
 
     public Mono<ResponseEntity<String>> testServer() {
-        return gwc.getResult()
-                .map(s -> ResponseEntity.status(HttpStatus.CREATED).body("successful"))
-                .doOnSuccess(s -> System.out.println("Success"));
+        return null;
+//        return gwc.getResult()
+//                .map(s -> ResponseEntity.status(HttpStatus.CREATED).body("successful"))
+//                .doOnSuccess(s -> System.out.println("Success"));
     }
 
 }
